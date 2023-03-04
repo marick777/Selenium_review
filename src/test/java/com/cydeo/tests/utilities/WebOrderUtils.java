@@ -1,0 +1,71 @@
+package com.cydeo.tests.utilities;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.testng.Assert;
+
+public class WebOrderUtils {
+/*
+    public static String returnOrderDate(WebDriver driver, String consumerName){
+        //Method #1 info:
+        //• Name: returnOrderDate ()
+        //• Return type: String
+        //• Arg1: WebDriver driver
+        //• Arg2: String costumerName
+        //This method should accept a costumerName and return the costumer order date as a String.
+
+        //WebElement bobsCell = driver.findElement(By.xpath("//table[@class='SampleTable']//td[.='Bob Martin']"));
+
+        String locator = "//td[.='"+consumerName+"']/following-sibling::td[3]";
+        WebElement customerDateCell = driver.findElement(By.xpath(locator));
+
+        return customerDateCell.getText();
+    }
+
+
+ */
+
+    public static String returnOrderDate(WebDriver driver, String consumerName){
+        //Method #1 info:
+        //• Name: returnOrderDate ()
+        //• Return type: String
+        //• Arg1: WebDriver driver
+        //• Arg2: String costumerName
+        //This method should accept a costumerName and return the costumer order date as a String.
+
+        //WebElement bobsCell = driver.findElement(By.xpath("//table[@class='SampleTable']//td[.='Bob Martin']"));
+
+
+        return driver.findElement(By.xpath("\"//td[.='\"+consumerName+\"']/following-sibling::td[3]\"")).getText();
+
+    }
+
+
+    public static void orderVerify(WebDriver driver, String consumerName, String expectedOrderDate) {
+        //Method #2 info:
+        //• Name: orderVerify ()
+        //• Return type: void
+        //• Arg1: WebDriver driver
+        //• Arg2: String costumerName
+        //• Arg3: String expectedOrderDate
+        //This method should accept above mentioned arguments and internally assert expectedOrderDate matching actualOrderDate.
+
+        //WebElement bobsCell = driver.findElement(By.xpath("//table[@class='SampleTable']//td[.='Bob Martin']"));
+
+        String locator = "//td[.='" + consumerName + "']/following-sibling::td[3]";
+        WebElement customerDateCell = driver.findElement(By.xpath(locator));
+        String actualOrderDate = customerDateCell.getText();
+
+        Assert.assertEquals(actualOrderDate, expectedOrderDate, "Order date not matching!!!");
+        //return customerDateCell.getText();
+
+    }
+
+
+
+}
+
+
+
+
